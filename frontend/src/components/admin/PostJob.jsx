@@ -68,14 +68,16 @@ const PostJob = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col pt-16 bg-gray-50">
+      {/* pt-16 adds padding top to prevent clipping under Navbar if it’s fixed height ~64px */}
       <Navbar />
-      <div className="flex items-center justify-center w-screen my-5 px-4">
+      <div className="flex flex-grow items-center justify-center w-full px-4 py-6 sm:py-10">
         <form
           onSubmit={submitHandler}
-          className="p-6 max-w-4xl w-full border border-gray-200 shadow-lg rounded-md"
+          className="p-6 max-w-4xl w-full border border-gray-200 shadow-lg rounded-md bg-white"
+          style={{ minWidth: '320px' }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <Label>Title</Label>
               <Input

@@ -37,24 +37,31 @@ const AdminJobsTable = () => {
         </TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="whitespace-nowrap px-4 py-2 text-left">Company Name</TableHead>
-            <TableHead className="whitespace-nowrap px-4 py-2 text-left">Role</TableHead>
-            <TableHead className="whitespace-nowrap px-4 py-2 text-left">Date</TableHead>
-            <TableHead className="whitespace-nowrap px-4 py-2 text-right">Action</TableHead>
+            <TableHead className="whitespace-nowrap px-4 py-2 text-left min-w-[150px]">Company Name</TableHead>
+            <TableHead className="whitespace-nowrap px-4 py-2 text-left min-w-[150px]">Role</TableHead>
+            <TableHead className="whitespace-nowrap px-4 py-2 text-left min-w-[120px]">Date</TableHead>
+            <TableHead className="whitespace-nowrap px-4 py-2 text-right min-w-[80px]">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {filterJobs?.map((job) => (
             <TableRow key={job._id} className="even:bg-gray-50">
-              <TableCell className="whitespace-nowrap px-4 py-2">{job?.company?.name}</TableCell>
-              <TableCell className="whitespace-nowrap px-4 py-2">{job?.title}</TableCell>
-              <TableCell className="whitespace-nowrap px-4 py-2">
+              <TableCell className="whitespace-nowrap px-4 py-2 max-w-[180px] truncate" title={job?.company?.name}>
+                {job?.company?.name}
+              </TableCell>
+              <TableCell className="whitespace-nowrap px-4 py-2 max-w-[180px] truncate" title={job?.title}>
+                {job?.title}
+              </TableCell>
+              <TableCell className="whitespace-nowrap px-4 py-2 min-w-[120px]">
                 {job?.createdAt.split('T')[0]}
               </TableCell>
-              <TableCell className="whitespace-nowrap px-4 py-2 text-right">
+              <TableCell className="whitespace-nowrap px-4 py-2 text-right min-w-[80px]">
                 <Popover>
                   <PopoverTrigger>
-                    <button aria-label="Open job actions" className="p-1 rounded hover:bg-gray-200">
+                    <button
+                      aria-label="Open job actions"
+                      className="p-1 rounded hover:bg-gray-200"
+                    >
                       <MoreHorizontal />
                     </button>
                   </PopoverTrigger>

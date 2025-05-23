@@ -27,10 +27,10 @@ const Applicants = () => {
   }, [params.id, dispatch]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow">
-        <h1 className="font-bold text-xl my-5 sm:text-2xl">
+        <h1 className="font-bold text-xl my-5 sm:text-2xl truncate">
           Applicants {applicants?.applications?.length || 0}
         </h1>
         <div className="overflow-x-auto">

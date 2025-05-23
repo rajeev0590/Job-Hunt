@@ -42,8 +42,8 @@ const CompanyCreate = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <section className="mb-8">
+      <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        <section className="mb-8 px-2 sm:px-0">
           <h1 className="text-3xl font-extrabold text-gray-900 mb-2">Your Company Name</h1>
           <p className="text-gray-500 max-w-md">
             What would you like to give your company name? You can change this later.
@@ -55,9 +55,9 @@ const CompanyCreate = () => {
             e.preventDefault();
             registerNewCompany();
           }}
-          className="space-y-6 max-w-md"
+          className="space-y-6 max-w-md w-full"
         >
-          <div>
+          <div className="w-full">
             <Label htmlFor="companyName" className="block text-sm font-medium text-gray-700">
               Company Name
             </Label>
@@ -68,15 +68,20 @@ const CompanyCreate = () => {
               onChange={e => setCompanyName(e.target.value)}
               placeholder="JobHunt, Microsoft etc."
               required
-              className="mt-1"
+              className="mt-1 w-full"
             />
           </div>
 
-          <div className="flex space-x-4">
-            <Button variant="outline" type="button" onClick={() => navigate('/admin/companies')}>
+          <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full max-w-md">
+            <Button
+              variant="outline"
+              type="button"
+              onClick={() => navigate('/admin/companies')}
+              className="w-full sm:w-auto"
+            >
               Cancel
             </Button>
-            <Button type="submit" disabled={!companyName.trim()}>
+            <Button type="submit" disabled={!companyName.trim()} className="w-full sm:w-auto">
               Continue
             </Button>
           </div>

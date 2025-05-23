@@ -19,18 +19,19 @@ const Companies = () => {
   }, [input, dispatch]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
-      <main className="max-w-6xl mx-auto my-10 px-4 sm:px-6 lg:px-8 flex flex-col">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+      {/* padding-top matches navbar height (e.g., 64px or 4rem) */}
+      <main className="pt-20 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl mx-auto">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
           <Input
-            className="w-full sm:w-64"
+            className="w-full sm:max-w-xs"
             placeholder="Filter by name"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             aria-label="Filter companies by name"
           />
-          <Button onClick={() => navigate('/admin/companies/create')} className="whitespace-nowrap">
+          <Button onClick={() => navigate('/admin/companies/create')} className="w-full sm:w-auto">
             New Company
           </Button>
         </div>

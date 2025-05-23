@@ -16,20 +16,30 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const logoutHandler = async () => {
-    try {
-      const res = await axios.get(`${USER_API_END_POINT}/logout`, {
-        withCredentials: true,
-      });
-      if (res.data.success) {
-        dispatch(setUser(null));
-        navigate('/');
-        toast.success(res.data.message);
-      }
-    } catch (error) {
-      toast.error(error?.response?.data?.message || 'Logout failed');
+  
+const logoutHandler = async () => {
+  try {
+    const res = await axios.get(`${USER_API_END_POINT}/logout`, {
+      withCredentials: true,
+    });
+
+    // Clear Redux state regardless of backend response
+    dispatch(setUser(null));
+
+    if (res.data.success) {
+      toast.success(res.data.message);
+    } else {
+      toast.warning("Logged out locally. Server didn’t confirm.");
     }
-  };
+
+    navigate('/login');
+  } catch (error) {
+    dispatch(setUser(null)); // Still clear user state even if server call fails
+    toast.error(error?.response?.data?.message || 'Logout failed');
+    navigate('/login');
+  }
+};
+
 
   const navLinks = user?.role === 'recruiter' ? (
     <>

@@ -77,9 +77,9 @@ const CompanySetup = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow max-w-xl mx-auto p-4 sm:p-6 md:p-10">
+      <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 md:px-10 py-6 sm:py-10">
         <form onSubmit={submitHandler} className="space-y-8">
-          <header className="flex items-center gap-4 mb-6">
+          <header className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
             <Button
               onClick={() => navigate('/admin/companies')}
               variant="outline"
@@ -130,7 +130,7 @@ const CompanySetup = () => {
               <Input
                 id="website"
                 name="website"
-                type="text"
+                type="url"
                 value={input.website}
                 onChange={changeEventHandler}
                 placeholder="https://example.com"
@@ -169,7 +169,7 @@ const CompanySetup = () => {
 
           <Button
             type="submit"
-            className="w-full flex justify-center items-center gap-2"
+            className="w-full flex justify-center items-center gap-2 py-3 sm:py-4"
             disabled={loading}
           >
             {loading && <Loader2 className="animate-spin h-5 w-5" />}

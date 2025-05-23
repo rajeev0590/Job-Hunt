@@ -36,32 +36,34 @@ const ApplicantsTable = () => {
   };
 
   return (
-    <div className="overflow-x-auto">
-      <Table className="min-w-full">
-        <TableCaption className="text-sm text-gray-500">
+    <div className="overflow-x-auto w-full">
+      <Table className="min-w-full border-collapse border border-gray-200">
+        <TableCaption className="text-sm text-gray-500 text-center">
           A list of your recent applied users
         </TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="whitespace-nowrap">Full Name</TableHead>
-            <TableHead className="whitespace-nowrap hidden sm:table-cell">Email</TableHead>
-            <TableHead className="whitespace-nowrap hidden md:table-cell">Contact</TableHead>
-            <TableHead className="whitespace-nowrap hidden lg:table-cell">Resume</TableHead>
-            <TableHead className="whitespace-nowrap hidden md:table-cell">Date</TableHead>
-            <TableHead className="text-right">Action</TableHead>
+            <TableHead className="whitespace-nowrap px-3 py-2 text-left">Full Name</TableHead>
+            <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden sm:table-cell">Email</TableHead>
+            <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden md:table-cell">Contact</TableHead>
+            <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden lg:table-cell">Resume</TableHead>
+            <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden md:table-cell">Date</TableHead>
+            <TableHead className="px-3 py-2 text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {applicants &&
             applicants.applications?.map((item) => (
               <TableRow key={item._id} className="hover:bg-gray-50">
-                <TableCell className="whitespace-nowrap">{item?.applicant?.fullname}</TableCell>
-                <TableCell className="whitespace-nowrap hidden sm:table-cell">{item?.applicant?.email}</TableCell>
-                <TableCell className="whitespace-nowrap hidden md:table-cell">{item?.applicant?.phoneNumber}</TableCell>
-                <TableCell className="whitespace-nowrap hidden lg:table-cell">
+                <TableCell className="whitespace-nowrap px-3 py-2">{item?.applicant?.fullname}</TableCell>
+                <TableCell className="whitespace-nowrap px-3 py-2 hidden sm:table-cell break-all max-w-xs">
+                  {item?.applicant?.email}
+                </TableCell>
+                <TableCell className="whitespace-nowrap px-3 py-2 hidden md:table-cell">{item?.applicant?.phoneNumber}</TableCell>
+                <TableCell className="whitespace-nowrap px-3 py-2 hidden lg:table-cell max-w-xs truncate">
                   {item.applicant?.profile?.resume ? (
                     <a
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-600 hover:underline break-words"
                       href={item?.applicant?.profile?.resume}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -72,20 +74,22 @@ const ApplicantsTable = () => {
                     <span>NA</span>
                   )}
                 </TableCell>
-                <TableCell className="whitespace-nowrap hidden md:table-cell">
+                <TableCell className="whitespace-nowrap px-3 py-2 hidden md:table-cell">
                   {item?.applicant?.createdAt?.split('T')[0]}
                 </TableCell>
-                <TableCell className="text-right cursor-pointer">
+                <TableCell className="px-3 py-2 text-right">
                   <Popover>
                     <PopoverTrigger>
-                      <MoreHorizontal />
+                      <button aria-label="Open actions" className="p-1 rounded hover:bg-gray-200">
+                        <MoreHorizontal />
+                      </button>
                     </PopoverTrigger>
                     <PopoverContent className="w-32">
                       {shortlistingStatus.map((status, index) => (
                         <div
                           onClick={() => statusHandler(status, item?._id)}
                           key={index}
-                          className="flex w-fit items-center my-2 cursor-pointer"
+                          className="flex w-full items-center my-2 cursor-pointer px-2 rounded hover:bg-gray-100 select-none"
                         >
                           <span>{status}</span>
                         </div>
