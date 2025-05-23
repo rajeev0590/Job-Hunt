@@ -1,38 +1,45 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from '../shared/Navbar'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button' 
-import { useNavigate } from 'react-router-dom' 
-import { useDispatch } from 'react-redux' 
-import AdminJobsTable from './AdminJobsTable'
-import useGetAllAdminJobs from '@/hooks/useGetAllAdminJobs'
-import { setSearchJobByText } from '@/redux/jobSlice'
+import React, { useEffect, useState } from 'react';
+import Navbar from '../shared/Navbar';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import AdminJobsTable from './AdminJobsTable';
+import useGetAllAdminJobs from '@/hooks/useGetAllAdminJobs';
+import { setSearchJobByText } from '@/redux/jobSlice';
 
 const AdminJobs = () => {
   useGetAllAdminJobs();
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setSearchJobByText(input));
   }, [input]);
+
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className='max-w-6xl mx-auto my-10'>
-        <div className='flex items-center justify-between my-5'>
+      <main className="max-w-6xl w-full mx-auto my-10 px-4 sm:px-6 lg:px-8 flex flex-col">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
           <Input
-            className="w-fit"
+            className="w-full sm:w-auto flex-grow max-w-md"
             placeholder="Filter by name, role"
+            value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          <Button onClick={() => navigate("/admin/jobs/create")}>New Jobs</Button>
+          <Button
+            onClick={() => navigate('/admin/jobs/create')}
+            className="w-full sm:w-auto"
+          >
+            New Jobs
+          </Button>
         </div>
         <AdminJobsTable />
-      </div>
+      </main>
     </div>
-  )
-}
+  );
+};
 
-export default AdminJobs
+export default AdminJobs;

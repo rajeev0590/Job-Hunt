@@ -20,78 +20,97 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
-      <div className="max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-5 p-8">
-        <div className="flex justify-between">
-          <div className="flex items-center gap-4">
-            
-            <Avatar className="h-24 w-24">
-              <AvatarImage
-                src={
-                  user?.profile?.profilePhoto ||
-                  "https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg"
-                }
-                alt="profile"
-              />
-            </Avatar>
-            <div>
-              <h1 className="font-medium text-xl">{user?.fullname}</h1>
-              <p>{user?.profile?.bio}</p>
+
+      {/* Profile Card */}
+      <div className="max-w-4xl mx-auto my-6 px-4 sm:px-6 lg:px-8">
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8">
+          {/* Top Section */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+            {/* Avatar and Info */}
+            <div className="flex items-center gap-4">
+              <Avatar className="h-24 w-24">
+                <AvatarImage
+                  src={
+                    user?.profile?.profilePhoto ||
+                    "https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg"
+                  }
+                  alt="profile"
+                />
+              </Avatar>
+              <div>
+                <h1 className="font-semibold text-xl">
+                  {user?.fullname || "Unnamed User"}
+                </h1>
+                <p className="text-gray-600">{user?.profile?.bio || "No bio added"}</p>
+              </div>
+            </div>
+
+            {/* Edit Button */}
+            <Button onClick={() => setOpen(true)} variant="outline">
+              <Pen className="h-4 w-4 mr-2" />
+              Edit
+            </Button>
+          </div>
+
+          {/* Contact Info */}
+          <div className="mt-6 space-y-2 text-gray-700">
+            <div className="flex items-center gap-3">
+              <Mail className="h-4 w-4" />
+              <span>{user?.email || "Not provided"}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Contact className="h-4 w-4" />
+              <span>{user?.phoneNumber || "Not provided"}</span>
             </div>
           </div>
-          <Button
-            onClick={() => setOpen(true)}
-            className="text-right"
-            variant="outline"
-          >
-            <Pen />
-          </Button>
-        </div>
-        <div className="my-5">
-          <div className="flex items-center gap-3 my-2">
-            <Mail />
-            <span>{user?.email}</span>
+
+          {/* Skills */}
+          <div className="mt-6">
+            <h2 className="font-semibold text-md mb-2">Skills</h2>
+            <div className="flex flex-wrap gap-2">
+              {user?.profile?.skills?.length > 0 ? (
+                user.profile.skills.map((skill, i) => (
+                  <Badge key={i}>{skill}</Badge>
+                ))
+              ) : (
+                <span className="text-gray-500">NA</span>
+              )}
+            </div>
           </div>
-          <div className="flex items-center gap-3 my-2">
-            <Contact />
-            <span>{user?.phoneNumber}</span>
-          </div>
-        </div>
-        <div className="my-5">
-          <h1>Skills</h1>
-          <div className="flex items-center gap-1">
-            {user?.profile?.skills.length !== 0 ? (
-              user?.profile?.skills.map((item, index) => (
-                <Badge key={index}>{item}</Badge>
-              ))
+
+          {/* Resume */}
+          <div className="mt-6">
+            <Label className="text-md font-bold">Resume</Label>
+            {isResume && user?.profile?.resume ? (
+              <div>
+                <a
+                  href={user.profile.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline block mt-1"
+                >
+                  {user?.profile?.resumeOriginalName || "View Resume"}
+                </a>
+              </div>
             ) : (
-              <span>NA</span>
+              <span className="text-gray-500">NA</span>
             )}
           </div>
         </div>
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Label className="text-md font-bold">Resume</Label>
-          {isResume ? (
-            <a
-              target="blank"
-              href={user?.profile?.resume}
-              className="text-blue-500 w-full hover:underline cursor-pointer"
-            >
-              {user?.profile?.resumeOriginalName}
-            </a>
-          ) : (
-            <span>NA</span>
-          )}
+      </div>
+
+      {/* Applied Jobs Table */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-6">
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8">
+          <h2 className="font-bold text-lg mb-4">Applied Jobs</h2>
+          <AppliedJobTable />
         </div>
       </div>
-      <div className="max-w-4xl mx-auto bg-white rounded-2xl">
-        <h1 className="font-bold text-lg my-5">Applied Jobs</h1>
-        {/* Applied Job Table   */}
-        <AppliedJobTable />
-      </div>
+
+      {/* Profile Update Modal */}
       <UpdateProfileDialog open={open} setOpen={setOpen} />
     </div>
   );
 };
 
 export default Profile;
-

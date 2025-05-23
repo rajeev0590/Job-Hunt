@@ -19,10 +19,13 @@ const _dirname = path.resolve();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
+
 const corsOptions = {
     origin:"https://job-hunt-yl91.onrender.com",
     credentials:true
 }
+
+
 
 app.use(cors(corsOptions));
 

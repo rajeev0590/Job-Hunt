@@ -1,3 +1,5 @@
+
+
 import React, { useEffect } from 'react'
 import Navbar from './shared/Navbar'
 import HeroSection from './HeroSection'
@@ -12,17 +14,21 @@ const Home = () => {
   useGetAllJobs();
   const { user } = useSelector(store => store.auth);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (user?.role === 'recruiter') {
       navigate("/admin/companies");
     }
-  }, []);
+  }, [user, navigate]);
+
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <HeroSection />
-      <CategoryCarousel />
-      <LatestJobs />
+      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <HeroSection />
+        <CategoryCarousel />
+        <LatestJobs />
+      </main>
       <Footer />
     </div>
   )

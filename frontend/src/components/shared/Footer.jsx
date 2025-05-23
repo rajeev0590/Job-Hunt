@@ -1,9 +1,11 @@
+
+
 import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-8 border-t border-t-gray-800">
-      <div className="container mx-auto px-4">
+    <footer className="fixed bottom-0 left-0 w-full bg-gray-900 text-white py-6 border-t border-t-gray-800 z-50">
+      <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Left Side: Title and copyright */}
           <div className="mb-4 md:mb-0 text-center md:text-left">
