@@ -70,14 +70,14 @@ const CompanySetup = () => {
       description: singleCompany.description || '',
       website: singleCompany.website || '',
       location: singleCompany.location || '',
-      file: null, // Reset file input, better UX
+      file: null,
     });
   }, [singleCompany]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
-      <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 md:px-10 py-6 sm:py-10">
+      <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 md:px-10 py-6 sm:py-10 w-full">
         <form onSubmit={submitHandler} className="space-y-8">
           <header className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
             <Button

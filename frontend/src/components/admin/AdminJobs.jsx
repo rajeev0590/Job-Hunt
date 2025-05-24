@@ -22,28 +22,33 @@ const AdminJobs = () => {
     <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
 
-      <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 pt-6 pb-10">
-        <div className="max-w-6xl mx-auto flex flex-col gap-6">
-          {/* Search + Button */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <main className="flex-1 w-full max-w-full px-4 sm:px-6 lg:px-8 pt-6 pb-10 overflow-y-auto">
+        <div className="max-w-7xl mx-auto flex flex-col gap-6">
+
+          {/* Responsive container for search input and button */}
+          <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-4">
+
             <Input
-              className="w-full sm:w-64"
+              className="flex-grow min-w-[200px] max-w-full sm:max-w-xs"
               placeholder="Filter by name, role"
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
+
             <Button
               onClick={() => navigate('/admin/jobs/create')}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto whitespace-nowrap"
             >
               New Job
             </Button>
+
           </div>
 
-          {/* Table */}
-          <div className="overflow-x-auto">
+          {/* Table wrapper - horizontal scroll on small screens */}
+          <div className="overflow-x-auto w-full">
             <AdminJobsTable />
           </div>
+
         </div>
       </main>
     </div>

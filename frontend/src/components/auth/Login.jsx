@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from 'react'
 import Navbar from '../shared/Navbar'
 import { Label } from '../ui/label'
@@ -20,7 +18,8 @@ const Login = () => {
         password: "",
         role: "",
     });
-    const { loading, user } = useSelector(store => store.auth);
+    const { user } = useSelector(store => store.auth);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -30,8 +29,9 @@ const Login = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
+        dispatch(setLoading(true));
         try {
-            dispatch(setLoading(true));
             const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
                 headers: {
                     "Content-Type": "application/json"
@@ -48,20 +48,20 @@ const Login = () => {
             toast.error(error.response?.data?.message || "Something went wrong");
         } finally {
             dispatch(setLoading(false));
+            setIsSubmitting(false);
         }
     }
+
     useEffect(() => {
         if (user) {
             navigate("/");
         }
-    }, [user, navigate])
+    }, [user, navigate]);
 
     return (
         <div>
             <Navbar />
-            {/* Add padding top to prevent navbar overlap */}
             <div className='pt-12 flex items-center justify-center min-h-screen bg-gray-50 px-4'>
-
                 <form 
                     onSubmit={submitHandler} 
                     className='w-full max-w-md bg-white border border-gray-200 rounded-md p-6 shadow-md'
@@ -128,7 +128,7 @@ const Login = () => {
                     </div>
 
                     {
-                        loading 
+                        isSubmitting 
                         ? <Button className="w-full py-3 flex justify-center items-center" disabled>
                             <Loader2 className='mr-2 h-5 w-5 animate-spin' /> Please wait
                           </Button> 

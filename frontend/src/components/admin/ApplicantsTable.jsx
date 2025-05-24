@@ -43,11 +43,22 @@ const ApplicantsTable = () => {
         </TableCaption>
         <TableHeader>
           <TableRow>
+            {/* Always visible */}
             <TableHead className="whitespace-nowrap px-3 py-2 text-left">Full Name</TableHead>
+
+            {/* Visible on small screens and above */}
             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden sm:table-cell">Email</TableHead>
+
+            {/* Visible on medium screens and above */}
             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden md:table-cell">Contact</TableHead>
-            <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden lg:table-cell">Resume</TableHead>
+
+            {/* Always visible */}
+            <TableHead className="whitespace-nowrap px-3 py-2 text-left">Resume</TableHead>
+
+            {/* Visible on medium screens and above */}
             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden md:table-cell">Date</TableHead>
+
+            {/* Always visible */}
             <TableHead className="px-3 py-2 text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
@@ -55,12 +66,19 @@ const ApplicantsTable = () => {
           {applicants &&
             applicants.applications?.map((item) => (
               <TableRow key={item._id} className="hover:bg-gray-50">
+                {/* Always visible */}
                 <TableCell className="whitespace-nowrap px-3 py-2">{item?.applicant?.fullname}</TableCell>
+
+                {/* Visible on small screens and above */}
                 <TableCell className="whitespace-nowrap px-3 py-2 hidden sm:table-cell break-all max-w-xs">
                   {item?.applicant?.email}
                 </TableCell>
+
+                {/* Visible on medium screens and above */}
                 <TableCell className="whitespace-nowrap px-3 py-2 hidden md:table-cell">{item?.applicant?.phoneNumber}</TableCell>
-                <TableCell className="whitespace-nowrap px-3 py-2 hidden lg:table-cell max-w-xs truncate">
+
+                {/* Always visible */}
+                <TableCell className="whitespace-nowrap px-3 py-2 max-w-xs truncate">
                   {item.applicant?.profile?.resume ? (
                     <a
                       className="text-blue-600 hover:underline break-words"
@@ -74,9 +92,13 @@ const ApplicantsTable = () => {
                     <span>NA</span>
                   )}
                 </TableCell>
+
+                {/* Visible on medium screens and above */}
                 <TableCell className="whitespace-nowrap px-3 py-2 hidden md:table-cell">
                   {item?.applicant?.createdAt?.split('T')[0]}
                 </TableCell>
+
+                {/* Always visible */}
                 <TableCell className="px-3 py-2 text-right">
                   <Popover>
                     <PopoverTrigger>

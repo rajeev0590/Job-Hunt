@@ -21,9 +21,7 @@ const CompanyCreate = () => {
         `${COMPANY_API_END_POINT}/register`,
         { companyName },
         {
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
       );
@@ -57,7 +55,7 @@ const CompanyCreate = () => {
           }}
           className="space-y-6 max-w-md w-full"
         >
-          <div className="w-full">
+          <div className="w-full min-w-0">
             <Label htmlFor="companyName" className="block text-sm font-medium text-gray-700">
               Company Name
             </Label>
@@ -69,7 +67,10 @@ const CompanyCreate = () => {
               placeholder="JobHunt, Microsoft etc."
               required
               className="mt-1 w-full"
+              aria-describedby="companyNameHelp"
             />
+            {/* Optional: Add helper text below the input */}
+            {/* <p id="companyNameHelp" className="mt-1 text-xs text-gray-400">You can update this later.</p> */}
           </div>
 
           <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full max-w-md">

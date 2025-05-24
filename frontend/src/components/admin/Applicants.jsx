@@ -29,11 +29,11 @@ const Applicants = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow">
-        <h1 className="font-bold text-xl my-5 sm:text-2xl truncate">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow w-full">
+        <h1 className="font-bold text-xl my-5 sm:text-2xl break-words max-w-full">
           Applicants {applicants?.applications?.length || 0}
         </h1>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto w-full">
           <ApplicantsTable />
         </div>
       </main>

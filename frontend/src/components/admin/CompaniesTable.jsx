@@ -30,16 +30,16 @@ const CompaniesTable = () => {
 
   return (
     <div className="overflow-x-auto w-full">
-      <Table className="min-w-full border-collapse border border-gray-200">
+      <Table className="min-w-full border border-gray-200 table-auto">
         <TableCaption className="text-sm text-gray-500 text-center">
           A list of your recently registered companies
         </TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-16 px-3 py-2">Logo</TableHead>
-            <TableHead className="whitespace-nowrap px-3 py-2">Name</TableHead>
-            <TableHead className="whitespace-nowrap px-3 py-2">Date</TableHead>
-            <TableHead className="text-right w-20 px-3 py-2">Action</TableHead>
+            <TableHead className="w-16 px-3 py-2 text-left">Logo</TableHead>
+            <TableHead className="px-3 py-2 text-left min-w-[150px]">Name</TableHead>
+            <TableHead className="px-3 py-2 text-left whitespace-nowrap min-w-[100px]">Date</TableHead>
+            <TableHead className="w-20 px-3 py-2 text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -51,11 +51,14 @@ const CompaniesTable = () => {
                     <AvatarImage src={company.logo} alt={`${company.name} logo`} />
                   </Avatar>
                 </TableCell>
-                <TableCell className="font-medium text-gray-900 px-3 py-2 break-words max-w-xs">
+                <TableCell
+                  className="font-medium text-gray-900 px-3 py-2 break-words max-w-xs"
+                  style={{ wordBreak: 'break-word' }}
+                >
                   {company.name}
                 </TableCell>
                 <TableCell className="text-gray-600 px-3 py-2 whitespace-nowrap">
-                  {company.createdAt?.split("T")[0] || 'N/A'}
+                  {company.createdAt?.split('T')[0] || 'N/A'}
                 </TableCell>
                 <TableCell className="text-right pr-4 px-3 py-2">
                   <Popover>

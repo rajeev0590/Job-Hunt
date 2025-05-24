@@ -21,8 +21,8 @@ const Companies = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
-      {/* padding-top matches navbar height (e.g., 64px or 4rem) */}
-      <main className="pt-20 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl mx-auto">
+      {/* padding-top matches navbar height (adjust if your navbar height changes) */}
+      <main className="pt-20 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl mx-auto flex flex-col flex-grow">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
           <Input
             className="w-full sm:max-w-xs"
@@ -35,7 +35,9 @@ const Companies = () => {
             New Company
           </Button>
         </div>
-        <CompaniesTable />
+        <div className="flex-grow overflow-x-auto">
+          <CompaniesTable />
+        </div>
       </main>
     </div>
   );
