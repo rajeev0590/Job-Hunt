@@ -1,3 +1,6 @@
+
+
+
 // import React from 'react';
 // import {
 //   Table,
@@ -44,10 +47,10 @@
 //         <TableHeader>
 //           <TableRow>
 //             <TableHead className="whitespace-nowrap px-3 py-2 text-left">Full Name</TableHead>
-//             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden sm:table-cell">Email</TableHead>
-//             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden md:table-cell">Contact</TableHead>
-//             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden lg:table-cell">Resume</TableHead>
-//             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden md:table-cell">Date</TableHead>
+//             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden xl:table-cell">Email</TableHead>
+//             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden xl:table-cell">Contact</TableHead>
+//             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden sm:table-cell">Resume</TableHead>
+//             <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden lg:table-cell">Date</TableHead>
 //             <TableHead className="px-3 py-2 text-right">Action</TableHead>
 //           </TableRow>
 //         </TableHeader>
@@ -55,12 +58,19 @@
 //           {applicants &&
 //             applicants.applications?.map((item) => (
 //               <TableRow key={item._id} className="hover:bg-gray-50">
-//                 <TableCell className="whitespace-nowrap px-3 py-2">{item?.applicant?.fullname}</TableCell>
-//                 <TableCell className="whitespace-nowrap px-3 py-2 hidden sm:table-cell break-all max-w-xs">
+//                 <TableCell className="whitespace-nowrap px-3 py-2">
+//                   {item?.applicant?.fullname}
+//                 </TableCell>
+
+//                 <TableCell className="whitespace-nowrap px-3 py-2 hidden xl:table-cell break-all max-w-xs">
 //                   {item?.applicant?.email}
 //                 </TableCell>
-//                 <TableCell className="whitespace-nowrap px-3 py-2 hidden md:table-cell">{item?.applicant?.phoneNumber}</TableCell>
-//                 <TableCell className="whitespace-nowrap px-3 py-2 hidden lg:table-cell max-w-xs truncate">
+
+//                 <TableCell className="whitespace-nowrap px-3 py-2 hidden xl:table-cell">
+//                   {item?.applicant?.phoneNumber}
+//                 </TableCell>
+
+//                 <TableCell className="whitespace-nowrap px-3 py-2 hidden sm:table-cell max-w-xs truncate">
 //                   {item.applicant?.profile?.resume ? (
 //                     <a
 //                       className="text-blue-600 hover:underline break-words"
@@ -74,13 +84,18 @@
 //                     <span>NA</span>
 //                   )}
 //                 </TableCell>
-//                 <TableCell className="whitespace-nowrap px-3 py-2 hidden md:table-cell">
+
+//                 <TableCell className="whitespace-nowrap px-3 py-2 hidden lg:table-cell">
 //                   {item?.applicant?.createdAt?.split('T')[0]}
 //                 </TableCell>
+
 //                 <TableCell className="px-3 py-2 text-right">
 //                   <Popover>
 //                     <PopoverTrigger>
-//                       <button aria-label="Open actions" className="p-1 rounded hover:bg-gray-200">
+//                       <button
+//                         aria-label="Open actions"
+//                         className="p-1 rounded hover:bg-gray-200"
+//                       >
 //                         <MoreHorizontal />
 //                       </button>
 //                     </PopoverTrigger>
@@ -147,17 +162,17 @@ const ApplicantsTable = () => {
 
   return (
     <div className="overflow-x-auto w-full">
-      <Table className="min-w-full border-collapse border border-gray-200">
+      <Table className="min-w-full border-collapse border border-gray-200 text-sm">
         <TableCaption className="text-sm text-gray-500 text-center">
           A list of your recent applied users
         </TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="whitespace-nowrap px-3 py-2 text-left">Full Name</TableHead>
-            <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden xl:table-cell">Email</TableHead>
-            <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden xl:table-cell">Contact</TableHead>
-            <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden sm:table-cell">Resume</TableHead>
-            <TableHead className="whitespace-nowrap px-3 py-2 text-left hidden lg:table-cell">Date</TableHead>
+            <TableHead className="whitespace-nowrap px-3 py-2">Full Name</TableHead>
+            <TableHead className="whitespace-nowrap px-3 py-2 hidden xl:table-cell">Email</TableHead>
+            <TableHead className="whitespace-nowrap px-3 py-2 hidden xl:table-cell">Contact</TableHead>
+            <TableHead className="whitespace-nowrap px-3 py-2">Resume</TableHead>
+            <TableHead className="whitespace-nowrap px-3 py-2 hidden lg:table-cell">Date</TableHead>
             <TableHead className="px-3 py-2 text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
@@ -177,10 +192,10 @@ const ApplicantsTable = () => {
                   {item?.applicant?.phoneNumber}
                 </TableCell>
 
-                <TableCell className="whitespace-nowrap px-3 py-2 hidden sm:table-cell max-w-xs truncate">
+                <TableCell className="whitespace-nowrap px-3 py-2 max-w-xs break-words">
                   {item.applicant?.profile?.resume ? (
                     <a
-                      className="text-blue-600 hover:underline break-words"
+                      className="text-blue-600 hover:underline"
                       href={item?.applicant?.profile?.resume}
                       target="_blank"
                       rel="noopener noreferrer"
