@@ -1,4 +1,4 @@
-# 🧑‍💼 Job Portal
+# 🧑‍💼 Job Hunt
 
 A full-stack job portal enabling users to search, filter, and apply for jobs based on location, skills, and experience. Includes secure authentication and role-based access for candidates and recruiters.
 
@@ -6,7 +6,7 @@ A full-stack job portal enabling users to search, filter, and apply for jobs bas
 
 
 Check out the live version of the project here:  
-👉 [Paisa Wassool – Live Demo](https://job-hunt-yl91.onrender.com/)
+👉 [Job Hunt – Live Demo](https://job-hunt-yl91.onrender.com/)
 
 
 ## 🛠 Tech Stack
